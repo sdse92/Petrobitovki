@@ -96,18 +96,18 @@ public class GetRequests {
     private String site(String s){
         System.out.println("в фильтр попал " + s);
         String rez = "";
-        if (s.contains("petrobani.ru/bani-bochki")){
-            rez = "http://petrobani.ru/bani-bochki";
-        }
+//        if (s.contains("petrobani.ru/bani-bochki")){
+//            rez = "http://petrobani.ru/bani-bochki";
+//        }
         if (s.contains("petrobani.ru")){
             rez = "http://petrobani.ru/";
         }
-        if (s.contains("petrobitovki.ru/domiki")){
-            rez = "http://petrobitovki.ru/domiki";
+        if (s.contains("petrobitovki.ru")){
+            rez = "http://petrobitovki.ru/";
         }
-        if (s.contains("petrobitovki.ru/bytovki-derevyannye")){
-            rez = "http://petrobitovki.ru/bytovki-derevyannye";
-        }
+//        if (s.contains("petrobitovki.ru/bytovki-derevyannye")){
+//            rez = "http://petrobitovki.ru/bytovki-derevyannye";
+//        }
         if (s.contains("petro-blok.ru")){
             rez = "http://petro-blok.ru/";
         }
