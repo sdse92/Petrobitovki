@@ -98,14 +98,14 @@ public class SetRequests {
 //            System.out.println("replaced l " + json.length());
 
             //создание контрагента
-//            HttpClient httpClient = HttpClientBuilder.create().build();
-//            HttpPost request = new HttpPost("https://api.myfreshcloud.com/companies");
-//            StringEntity params = new StringEntity(jsonToPost);
-//            request.addHeader("authorization", "Basic MTg5Nzo3MFpxYThXaGhmZHM5RTF5RkJVX0pFb3NKWmZESlVXMQ==");
-//            request.addHeader("content-type", "application/json;odata=verbose;charset=utf-8");
-//            request.setEntity(params);
-//            HttpResponse response = httpClient.execute(request);
-//            System.out.println("status: " + response.getStatusLine());
+            HttpClient httpClient = HttpClientBuilder.create().build();
+            HttpPost request = new HttpPost("https://api.myfreshcloud.com/companies");
+            StringEntity params = new StringEntity(jsonToPost);
+            request.addHeader("authorization", "Basic MTg5Nzo3MFpxYThXaGhmZHM5RTF5RkJVX0pFb3NKWmZESlVXMQ==");
+            request.addHeader("content-type", "application/json;odata=verbose;charset=utf-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            System.out.println("status: " + response.getStatusLine());
         }
     }
 
