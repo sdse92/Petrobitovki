@@ -1,0 +1,20 @@
+05.06.2019, 17:58
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
+05.06.2019, 17:59
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
+05.06.2019, 17:59
+java.net.UnknownHostException: new.welcome-tracker.ru
+05.06.2019, 18:02
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
+05.06.2019, 18:03
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
+06.06.2019, 13:20
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
+06.06.2019, 13:21
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
+06.06.2019, 13:22
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
+06.06.2019, 13:23
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
+06.06.2019, 13:25
+org.apache.http.conn.HttpHostConnectException: Connect to new.welcome-tracker.ru:80 [new.welcome-tracker.ru/138.201.251.19] failed: Connection timed out: connect
