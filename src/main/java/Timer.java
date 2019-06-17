@@ -11,7 +11,7 @@ public class Timer {
     private String getRequestResult = null;
 
     private long timeTo = Calendar.getInstance(TimeZone.getTimeZone("GMT-0")).getTime().getTime()/1000;
-        private long timeFrom = timeTo - 60;
+    private long timeFrom = timeTo - 60;
 //    private long timeFrom = timeTo - 3600;
     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
     Instant ins;
@@ -34,19 +34,23 @@ public class Timer {
 
     public void start(){
         while (true){
+            //пишем за какой период времени считывают данные
             ins = Instant.ofEpochSecond(getTimeFrom() + 10800);
             System.out.println("\n" + getTimeFrom() + " " + getTimeTo() + " " + ins);
+            //создаем файл для записи ошибок туда
             ExceptionLogger exception = new ExceptionLogger();
             exception.create();
             Connect connector = new Connect();
 
             GetRequests get = new GetRequests();
+            //ломимся в апи вк трекера и берем данные за период
             try {
                 getRequestResult = get.getAPIRequest("http://new.welcome-tracker.ru/api.php?api=71e5367021e4c6cf091f34434e5e9458&from="
                         + getTimeFrom() +  "&to=" + getTimeTo());
                 System.out.println(getRequestResult);
 //                getRequestResult = get.getAPIRequest("http://new.welcome-tracker.ru/api.php?api=71e5367021e4c6cf091f34434e5e9458&from=1544508000"
 //                                +  "&to=1544518800");
+                //пишем все ошибки в файл, если поймали ошибку, увеличиваем период запроса
             } catch (IOException e) {
                 exception.write(e.toString());
                 try {
@@ -77,6 +81,7 @@ public class Timer {
             setTimeFrom(getTimeTo());
             setTimeTo(Calendar.getInstance(TimeZone.getTimeZone("GMT-0")).getTime().getTime()/1000);
 
+            //фильтруем строку и запихиваем ее в список для обработки потоками
             get.requestResult(getRequestResult);
             try {
                 get.setDbConnection(connector.connectDB());
@@ -84,6 +89,7 @@ public class Timer {
                 exception.write(e.toString());
             }
 
+            //потоками создаем отдельных клиентов из списка для обработки
             List<Thread> threads = new ArrayList<>();
             int threadCount = get.numberOfClients();
             for (int i = 0; i < threadCount; i++){
@@ -102,6 +108,7 @@ public class Timer {
                 }
             }
 
+            //пушим созданых клиентов в БД и удаляем их из листа клиентов
             try {
                 get.pushToDB();
             } catch (SQLException e) {

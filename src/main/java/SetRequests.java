@@ -20,6 +20,7 @@ public class SetRequests {
     private ArrayList<String> jsonObjectsDeal = new ArrayList<>();
     private ArrayList<String> clientId_Site = new ArrayList<>();
     private ArrayList<String> clientIdToJson = new ArrayList<>();
+    private ArrayList<String> unicList = new ArrayList<>();
     ClientDao dbConnect;
 
     public SetRequests(ClientDao dbConnect) {
@@ -32,31 +33,11 @@ public class SetRequests {
         for (Client c : clients){
             JsonParser json = new JsonParser();
             JSONObject j = new JSONObject();
-//            if (c.getSite().equals("http://petrobani.ru/bani-bochki")){
-//                j.put("name","Tracker-BB " + c.getPhoneFirst());
-//                j.put("note", "Client from Tracker-BB" + "\n" + c.getPhoneFirst() + "\n" + c.getPhoneSecond());
-//                clientId_Site.add("Tracker-BB+" + c.getPhoneFirst());
-//            }
-            if (c.getSite().equals("http://petrobani.ru/")){
-                j.put("name","Tracker-MB " + c.getPhoneFirst());
-                j.put("note", "Client from Tracker-MB" + "\n" + c.getPhoneFirst() + "\n" + c.getPhoneSecond());
-                clientId_Site.add("Tracker-MB+" + c.getPhoneFirst());
-            }
-            if (c.getSite().equals("http://petrobitovki.ru/")){
-                j.put("name","Tracker-BD " + c.getPhoneFirst());
-                j.put("note", "Client from Tracker-BD" + "\n" + c.getPhoneFirst() + "\n" + c.getPhoneSecond());
-                clientId_Site.add("Tracker-BD+" + c.getPhoneFirst());
-            }
-//            if (c.getSite().equals("http://petrobitovki.ru/bytovki-derevyannye")){
-//                j.put("name","Tracker-BD " + c.getPhoneFirst());
-//                j.put("note", "Client from Tracker-BD" + "\n" + c.getPhoneFirst() + "\n" + c.getPhoneSecond());
-//                clientId_Site.add("Tracker-BD+" + c.getPhoneFirst());
-//            }
-            if (c.getSite().equals("http://petro-blok.ru/")){
-                j.put("name","Tracker-BK " + c.getPhoneFirst());
-                j.put("note", "Client from Tracker-BK" + "\n" + c.getPhoneFirst() + "\n" + c.getPhoneSecond());
-                clientId_Site.add("Tracker-BK+" + c.getPhoneFirst());
-            }
+
+            j.put("name",c.getSite() + " " + c.getPhoneFirst());
+            j.put("note", "Client from " + c.getSite() + "\n" + c.getPhoneFirst() + "\n" + c.getPhoneSecond());
+//            clientId_Site.add(c.getSite() + "+" + c.getPhoneFirst());
+
             j.put("created_by", "VK-TRACKER");
 
 //            j.put("created_by", "API test");
@@ -64,6 +45,7 @@ public class SetRequests {
 
             j.put("info_source", "TRACKER");
             j.put("type_id", new Integer(19));
+            j.put("status_id", new Integer(15));
             JSONArray array = new JSONArray();
             JSONObject jphone = new JSONObject();
             if (c.getPhoneSecond().equals("")){
@@ -86,11 +68,8 @@ public class SetRequests {
     public void sendClient() throws IOException {
         for (String jsonToPost : jsonObjects){
             System.out.println(jsonToPost);
-            System.out.println("to post l " + jsonToPost.length());
-            String s = "{\"name\":\"Tracker-MB 79112330676\",\"note\":\"Client from Tracker-MB 79112330676\"," +
-                    "\"created_by\":\"API test\",\"created\":\"2019-02-10T13:43:27.153\",\"info_source\":\"TRACKER\"," +
-                    "\"type_id\":19,\"phones\":[{\"phone\":\"79112330676\"}]}";
-            System.out.println("str l " + s.length());
+
+            System.out.println("будет создан");
 //            String json = "{\"name\":\"" + jsonToPost.get("name") + "\",\"note\":\"" + jsonToPost.get("note") + "\"," +
 //                    "\"created_by\":\"" + jsonToPost.get("created_by") + "\",\"created\":\"" + jsonToPost.get("created") +
 //                    "\",\"info_source\":\"" + jsonToPost.get("info_source")+ "\"," + "\"type_id\":" + jsonToPost.get("type_id") +"," +
@@ -107,6 +86,7 @@ public class SetRequests {
             HttpResponse response = httpClient.execute(request);
             System.out.println("status: " + response.getStatusLine());
         }
+        jsonObjects.clear();
     }
 
 //    public void getClientId() throws IOException {

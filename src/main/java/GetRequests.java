@@ -51,6 +51,7 @@ public class GetRequests {
 
         }
         clientsToParce = new ArrayBlockingQueue<>(listForQueue.size(), true, listForQueue);
+        listForQueue.clear();
     }
 
     public void setDbConnection(ClientDao dbConnection) {
@@ -73,6 +74,7 @@ public class GetRequests {
                     System.out.println("до " + site);
                     Client client = new Client(phone, ref, site);
                     clients.add(client);
+                    clientsToParce.remove(c);
                 }
             }
         }catch (InterruptedException e){
@@ -97,21 +99,9 @@ public class GetRequests {
     private String site(String s){
         System.out.println("в фильтр попал " + s);
         String rez = "";
-//        if (s.contains("petrobani.ru/bani-bochki")){
-//            rez = "http://petrobani.ru/bani-bochki";
-//        }
-        if (s.contains("petrobani.ru")){
-            rez = "http://petrobani.ru/";
-        }
-        if (s.contains("petrobitovki.ru")){
-            rez = "http://petrobitovki.ru/";
-        }
-//        if (s.contains("petrobitovki.ru/bytovki-derevyannye")){
-//            rez = "http://petrobitovki.ru/bytovki-derevyannye";
-//        }
-        if (s.contains("petro-blok.ru")){
-            rez = "http://petro-blok.ru/";
-        }
+        if (s.contains("petrobani.ru")){ rez = "Tracker-MB"; }
+        if (s.contains("petrobitovki.ru")){ rez = "Tracker-BD"; }
+        if (s.contains("petro-blok.ru")){ rez = "Tracker-BK"; }
         System.out.println("из фильтра вышло " + rez);
         return rez;
     }
@@ -120,6 +110,7 @@ public class GetRequests {
         for (Client clientToPush : clients){
             dbConnection.createTable();
             dbConnection.add(clientToPush);
+            clients.remove(clientToPush);
         }
     }
 }
